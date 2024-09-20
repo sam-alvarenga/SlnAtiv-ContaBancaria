@@ -16,10 +16,10 @@ namespace Ativ_ContaBancaria.models
             public ContaEspecial(string titular, string numeroConta, double saldo, double limite)
             {
           
-             Titular = titular;
-             NumeroConta = numeroConta;
-             Saldo = saldo;
-             Limite = limite;    
+             this.Titular = titular;
+             this.NumeroConta = numeroConta;
+             this.Saldo = saldo;
+             this.Limite = limite;    
             
             }
 
