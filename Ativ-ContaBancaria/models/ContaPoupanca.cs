@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Ativ_ContaBancaria.models
+namespace SamAlvarenga.Ativ_ContaBancaria.Models;
+
+internal class ContaPoupanca
 {
-    internal class ContaPoupanca
-    {
-        public string Titular { get; set; }
-        public string NumeroConta { get; set; }
-        public double Saldo { get; set; }
-        public DateTime DataAniversario { get; set; }
-    }
+    public string Titular { get; set; }
+    public string NumeroConta { get; set; }
+    public double Saldo { get; set; }
+    public DateTime DataAniversario { get; set; }
 }
