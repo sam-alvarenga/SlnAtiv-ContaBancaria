@@ -12,5 +12,14 @@ internal class ContaPoupanca
     public string Titular { get; set; }
     public string NumeroConta { get; set; }
     public double Saldo { get; set; }
-    public DateTime DataAniversario { get; set; }
+
+    public DateTime DataAniversario = DateTime.Now;
+
+    public ContaPoupanca() { }
+
+    public ContaPoupanca( string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca) {
+        this.Titular = TitularPoupanca;
+        this.NumeroConta = NumeroContaPoupanca;
+        this.Saldo = SaldoPoupanca;
+    }
 }
