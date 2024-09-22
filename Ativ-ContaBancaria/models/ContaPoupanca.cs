@@ -17,9 +17,20 @@ internal class ContaPoupanca
 
     public ContaPoupanca() { }
 
+    
     public ContaPoupanca( string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca) {
         this.Titular = TitularPoupanca;
         this.NumeroConta = NumeroContaPoupanca;
         this.Saldo = SaldoPoupanca;
     }
+
+    //Retonar o método de exibir os dados Conta Poupança
+    public string ExibirDadosConta()
+    {
+        return $"Titular: {Titular}," +
+            $" Número da Conta: {NumeroConta}, " +
+            $"Saldo: R$ {Saldo}, " +
+            $"Data de Aniversário: {DataAniversario}";
+}
+
 }

@@ -21,17 +21,14 @@ class Program
         //chamando o objecto da Conta Especial
         ContaEspecial especial = new ContaEspecial(esTitular, esNumeroConta, esSaldo, esLimite);
 
-        //Mostrando os dados
+        //Mostrando os dados da Conta Especial
         Console.WriteLine("\n Dados da Conta Especial:");
-        Console.WriteLine($"Titular: {especial.Titular}," +
-            $" Número: {especial.NumeroConta}, " +
-            $"Saldo: {especial.Saldo}, " +
-            $"Limite Disponivel: {especial.Limite}");
+        Console.WriteLine(especial.ExibirDadosConta());
 
 
         // Instanciando ContaPoupanca
         //ContaPoupanca poupanca = new ContaPoupanca();
-       
+
 
         // Coletando dados para a Conta Poupança
         Console.WriteLine("\n Conta Poupança:");
@@ -47,14 +44,11 @@ class Program
 
 
 
-        //Mostrando os dados
+        //Mostrando os dados Poupança
         Console.WriteLine("\n Dados da Conta Poupança:");
-        Console.WriteLine($"Nome do Titular: {poupanca.Titular}, " +
-            $"Número: {poupanca.NumeroConta}," +
-            $"Saldo: R$ {poupanca.Saldo}, " +
-            $"Data de Aniversário: {poupanca.DataAniversario}");
+        Console.WriteLine(poupanca.ExibirDadosConta());
 
-       
+
 
 
 
