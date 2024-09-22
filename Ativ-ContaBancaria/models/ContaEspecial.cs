@@ -13,13 +13,13 @@ internal class ContaEspecial
         public double Saldo { get; set; }
         public double Limite { get; set; }
 
-        public ContaEspecial(string titular, string numeroConta, double saldo, double limite)
+        public ContaEspecial(string esTitular, string esNumeroConta, double esSaldo, double esLimite)
         {
       
-         this.Titular = titular;
-         this.NumeroConta = numeroConta;
-         this.Saldo = saldo;
-         this.Limite = limite;    
+         this.Titular = esTitular;
+         this.NumeroConta = esNumeroConta;
+         this.Saldo = esSaldo;
+         this.Limite = esLimite;    
         
         }
 
