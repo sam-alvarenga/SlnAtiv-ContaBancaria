@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,22 @@ internal class ContaPoupanca
 
     public ContaPoupanca() { }
 
-    
-    public ContaPoupanca( string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca) {
+    public void Sacar(double valor)
+    {
+        if (valor <= this.Saldo)
+        {
+            this.Saldo -= valor;
+            Console.WriteLine($"Saque de R${valor} realizado com Sucesso. Saldo atual é: R${this.Saldo}");
+        }
+        else
+        {
+
+            Console.WriteLine("Saque não permitido. O valor inserido excede o Saldo .");
+        }
+    }
+
+    public ContaPoupanca(string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca)
+    {
         this.Titular = TitularPoupanca;
         this.NumeroConta = NumeroContaPoupanca;
         this.Saldo = SaldoPoupanca;
@@ -29,8 +44,9 @@ internal class ContaPoupanca
     {
         return $"Titular: {Titular}," +
             $" Número da Conta: {NumeroConta}, " +
-            $"Saldo: R$ {Saldo}, " +
-            $"Data de Aniversário: {DataAniversario}";
-}
+            $" Saldo: R$ {Saldo}, " +
+            $" Data de Aniversário: {DataAniversario}";
+    }
+    
 
 }
