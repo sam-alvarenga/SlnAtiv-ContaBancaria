@@ -7,6 +7,7 @@ class Program
     
     static void Main()
     {
+        //------ CONTA ESPECIAL-----
         // Coletando dados para a Conta Especial
         Console.WriteLine("\n Conta Especial:");
         Console.Write("Titular: ");
@@ -30,12 +31,18 @@ class Program
         double valorSaqueEspecial = Convert.ToDouble(Console.ReadLine());
         especial.Sacar(valorSaqueEspecial);
 
+        //Realizando o depósito da Conta Especial
+        Console.WriteLine("Digite o valor do Depósito:");
+        double depositoEspecial = Convert.ToDouble(Console.ReadLine());
+        especial.Depositar(depositoEspecial);   
 
 
         // Instanciando ContaPoupanca
         //ContaPoupanca poupanca = new ContaPoupanca();
 
 
+
+        //------ CONTA POUPANÇA -------
         // Coletando dados para a Conta Poupança
         Console.WriteLine("\n Conta Poupança:");
         Console.Write("Titular: ");
@@ -45,8 +52,6 @@ class Program
         Console.Write("Saldo: R$ ");
         double SaldoPoupanca = Convert.ToDouble(Console.ReadLine());
 
-        
-
         //chamando class objeto
         ContaPoupanca poupanca = new ContaPoupanca(TitularPoupanca, NumeroContaPoupanca, SaldoPoupanca);
 
@@ -54,6 +59,11 @@ class Program
         Console.Write("\n Digite o valor do saque da Conta Poupança: ");
         double valorSaquePoupanca = Convert.ToDouble(Console.ReadLine());
         poupanca.Sacar(valorSaquePoupanca);
+
+        //Realizando o depósito da Conta Poupança
+        Console.WriteLine("Digite o valor do Depósito:");
+        double depositoPoupanca = Convert.ToDouble(Console.ReadLine());
+        poupanca.Depositar(depositoPoupanca);
 
         //Mostrando os dados Poupança
         Console.WriteLine("\n Dados da Conta Poupança:");

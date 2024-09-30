@@ -23,6 +23,7 @@ internal class ContaEspecial
 
     }
 
+    //Método Sacar 
     public void Sacar(double valor)
     {
         if (valor <= this.Saldo + this.Limite)
@@ -37,7 +38,7 @@ internal class ContaEspecial
             else
             {
                 this.Saldo -= valor;
-                Console.WriteLine($"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo} Limite Disponivel: R${this.Limite}");
+                Console.WriteLine($"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo}, Limite Disponível: R${this.Limite}");
             }
         }
         else
@@ -46,6 +47,23 @@ internal class ContaEspecial
         }
     }
 
+    //Método Depositar 
+    public void Depositar(double valor)
+    {
+        if (valor > 0)
+        {
+            this.Saldo += valor;
+            Console.WriteLine($"Depósito de R${valor} Realizado com Sucesso. Saldo atual é R${this.Saldo}");
+        }
+        else
+        {
+            Console.WriteLine("Depósito não permitido. O valor Depósitado deve ser maior que ZERO.");
+
+        }
+    }
+
+
+
     //Retonar o método de exibir os dados Conta Especial
     public string ExibirDadosConta()
     {
@@ -53,7 +71,7 @@ internal class ContaEspecial
             $"Titular: {this.Titular}," +
             $" Número da Conta: {this.NumeroConta}," +
             $" Saldo: R$ {this.Saldo}," +
-            $" Limite Disponivel: R$ {this.Limite}";
+            $" Limite Disponível: R$ {this.Limite}";
 
     }
 }

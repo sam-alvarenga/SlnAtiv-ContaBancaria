@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ internal class ContaPoupanca
 
     public DateTime DataAniversario = DateTime.Now;
 
-    public ContaPoupanca() { }
+
+    //Método Sacar 
 
     public void Sacar(double valor)
     {
@@ -31,6 +33,27 @@ internal class ContaPoupanca
             Console.WriteLine("Saque não permitido. O valor inserido excede o Saldo .");
         }
     }
+
+    //Método Depositar
+    public void Depositar(double valor)
+    {
+        if (valor > 0)
+        {
+            this.Saldo += valor;
+            Console.WriteLine($"Depósito de R${valor} Realizado com Sucesso. Saldo atual é R${this.Saldo}");
+        }
+        else
+        {
+
+            Console.WriteLine("Depósito não permitido. O valor Depósitado deve ser maior que ZERO.");
+
+
+        }
+            
+
+
+    }
+    
 
     public ContaPoupanca(string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca)
     {
