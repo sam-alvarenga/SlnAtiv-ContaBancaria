@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace SamAlvarenga.Ativ_ContaBancaria.Models;
 
-internal class ContaEspecial
+public class ContaEspecial : Conta
 {
-    public string Titular { get; set; }
-    public string NumeroConta { get; set; }
-    public double Saldo { get; set; }
+
     public double Limite { get; set; }
 
     public ContaEspecial(string esTitular, string esNumeroConta, double esSaldo, double esLimite)
@@ -47,25 +45,8 @@ internal class ContaEspecial
         }
     }
 
-    //Método Depositar 
-    public void Depositar(double valor)
-    {
-        if (valor > 0)
-        {
-            this.Saldo += valor;
-            Console.WriteLine($"Depósito de R${valor} Realizado com Sucesso. Saldo atual é R${this.Saldo}");
-        }
-        else
-        {
-            Console.WriteLine("Depósito não permitido. O valor Depósitado deve ser maior que ZERO.");
-
-        }
-    }
-
-
-
-    //Retonar o método de exibir os dados Conta Especial
-    public string ExibirDadosConta()
+        //Retonar o método de exibir os dados Conta Especial
+    public override string ExibirDadosConta()
     {
         return
             $"Titular: {this.Titular}," +
@@ -74,6 +55,7 @@ internal class ContaEspecial
             $" Limite Disponível: R$ {this.Limite}";
 
     }
+
 }
 
 
