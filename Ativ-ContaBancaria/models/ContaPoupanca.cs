@@ -9,24 +9,42 @@ using System.Threading.Tasks;
 
 namespace SamAlvarenga.Ativ_ContaBancaria.Models
 {
+    /// <summary>
+    /// Representação de uma conta poupança, que herda da classe base Conta.
+    /// </summary>
     public class ContaPoupanca : Conta
     {
-        public DateTime DataAniversario = DateTime.Now;
-
-        public ContaPoupanca(string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca)
+        /// <summary>
+        /// Construtor da classe ContaPoupanca.
+        /// </summary>
+        /// <param name="TitularPoupanca">Nome do titular da conta poupança.</param>
+        /// <param name="NumeroContaPoupanca">Número da conta poupança.</param>
+        /// <param name="SaldoPoupanca">Saldo inicial da conta poupança.</param>
+        /// <param name="DataDeNascimento">Data de nascimento do titular.</param>
+        public ContaPoupanca(string TitularPoupanca, string NumeroContaPoupanca, double SaldoPoupanca, DateOnly DataDeNascimento)
         {
             this.Titular = TitularPoupanca;
             this.NumeroConta = NumeroContaPoupanca;
             this.Saldo = SaldoPoupanca;
+            this.DataCriacaoConta =  DateTime.Now;
+            this.DataDeNascimento = DataDeNascimento;
+            TipoDaConta = "Conta Poupança";
         }
 
+        /// <summary>
+        /// Método que exibe os dados da conta poupança.
+        /// Sobrescreve o método ExibirDadosConta da classe base Conta.
+        /// </summary>
         //Retonar o método de exibir os dados Conta Poupança
         public override string ExibirDadosConta()
         {
-            return $"Titular: {Titular}," +
-                $" Número da Conta: {NumeroConta}, " +
-                $" Saldo: R$ {Saldo}, " +
-                $" Data de Aniversário: {DataAniversario}";
+            return
+                $" Tipo da Conta: {this.TipoDaConta},"+
+                $" Titular: {this.Titular}," +
+                $" Número da Conta: {this.NumeroConta}, " +
+                $" Saldo: R$ {this.Saldo}, " +
+                $" Data da Criação da Conta: {this.DataCriacaoConta}" +
+                $" Data de Aniversário: {this.DataDeNascimento}";
         }
 
     }

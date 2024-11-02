@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 //class Program
 //{
-    
+
 //    static void Main()
 //    {
 //        //------ CONTA ESPECIAL-----
@@ -71,18 +71,18 @@ using System.ComponentModel;
 
 //        //Fazendo a validação do metodo transferir poupanca
 
-//        ContaPoupanca contaUp = new ContaPoupanca("Fred", "34235", 1000.32);
+//       ContaPoupanca contaUp = new ContaPoupanca("Fred", "34235", 1000.32);
 //        ContaEspecial contaDown = new ContaEspecial("Sarah", "34411", 12400.88, 100.00);
 
 //        contaUp.Transferir(contaDown, 5000);
 
 
+////validação das classes com herança
+//ContaEspecial especial = new ContaEspecial("Samantha", "34235", 1000.32, 10000, new DateOnly(1994, 03, 15));
+//ContaPoupanca poupanca = new ContaPoupanca("Samantha", "34235", 1000.32, new DateOnly(1994, 03, 15));
 
-
-
-
-
-
+//Console.WriteLine(especial.ExibirDadosConta());
+//Console.WriteLine(poupanca.ExibirDadosConta());
 
 //    }
 
