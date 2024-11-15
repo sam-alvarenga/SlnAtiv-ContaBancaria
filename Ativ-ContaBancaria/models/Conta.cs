@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,9 +48,16 @@ namespace SamAlvarenga.Ativ_ContaBancaria.Models
         /// Armazena a senha do usuário.
         /// </summary>
         private string _senha;
+
         /// <summary>
-        /// Senha da conta. Deve ter no máximo 8 caracteres.
+        /// Propriedade que representa a senha da conta. A senha deve ter no máximo 8 caracteres.
+        /// Se um valor com mais de 8 caracteres for atribuído, uma exceção do tipo <see cref="ArgumentException"/> será lançada.
         /// </summary>
+        /// <value>
+        /// A senha da conta, que é validada para garantir que tenha no máximo 8 caracteres.
+        /// </value>
+        /// <exception cref="ArgumentException">Lançada quando a senha atribuída tem mais de 8 caracteres.
+        /// </exception>
         public string Senha
         {
             get { return _senha; }
@@ -65,53 +73,85 @@ namespace SamAlvarenga.Ativ_ContaBancaria.Models
 
 
         /// <summary>
-        /// Método para sacar um valor da conta.
+        /// Realiza um saque de um valor especificado, se o valor for válido e não exceder o saldo disponível.
+        /// Caso o valor do saque seja maior que o saldo, ou inválido (menor ou igual a zero), o método retorna uma mensagem de erro.
+        /// Se o valor do saque for inválido (menor ou igual a zero), uma exceção é lançada.
         /// </summary>
-        /// <param name="valor">Valor a ser sacado.</param>
-        public void Sacar(double valor)
+        /// <param name="valor">O valor que se deseja sacar.</param>
+        /// <returns>Uma string que indica o resultado do saque. Caso seja bem-sucedido, retorna uma mensagem de sucesso com o saldo atual.
+        /// Caso contrário, retorna uma mensagem de erro indicando o motivo (ex: valor excede o saldo ou valor inválido).</returns>
+        /// <exception cref="Exception">Lança uma exceção caso o valor do saque seja menor ou igual a zero, indicando que o saque é inválido.</exception>
+        
+        public string Sacar(double valor)
         {
-            if (valor <= this.Saldo)
+
+            try
             {
-                this.Saldo -= valor;
-                Console.WriteLine($"Saque de R${valor} realizado com Sucesso. Saldo atual é: R${this.Saldo}");
+                if (valor > 0)
+                {
+
+                    if (valor <= this.Saldo)
+                    {
+                        this.Saldo -= valor;
+                        return $"Saque de R${valor} realizado com Sucesso. Saldo atual é: R${this.Saldo}";
+                    }
+                    else
+                    {
+
+                        return "Saque não permitido. O valor inserido excede o Saldo .";
+                    }
+                }
+                else
+                {
+                    throw new Exception("Saque inválido");
+                }
             }
-            else
+            catch (Exception ex)
             {
 
-                Console.WriteLine("Saque não permitido. O valor inserido excede o Saldo .");
+                return $"{ex}";
             }
         }
 
         /// <summary>
-        /// Método para depositar um valor na conta.
+        /// Realiza um depósito de um valor especificado, se o valor for maior que zero.
+        /// Caso o valor seja inválido (menor ou igual a zero), uma exceção do tipo `ArgumentException` será lançada.
         /// </summary>
-        /// <param name="valor">Valor a ser depositado.</param>
-        //Método Sacar 
-        //Método Depositar
-        public void Depositar(double valor)
+        /// <param name="valor">O valor que se deseja depositar.</param>
+        /// <returns>Uma string que indica o resultado do depósito. Caso seja bem-sucedido, retorna uma mensagem de sucesso com o saldo atual.
+        /// Caso contrário, retorna uma mensagem de erro indicando o motivo (ex: valor inválido).</returns>
+        /// <exception cref="ArgumentException">Lança uma exceção do tipo `ArgumentException` se o valor depositado for menor ou igual a zero, indicando que o depósito não é permitido.</exception>
+        public string Depositar(double valor)
         {
-            if (valor > 0)
+            try
             {
-                this.Saldo += valor;
-                Console.WriteLine($"Depósito de R${valor} Realizado com Sucesso. Saldo atual é R${this.Saldo}");
+                if (valor > 0)
+                {
+
+                    this.Saldo += valor;
+                    return $"Depósito de R${valor} Realizado com Sucesso. Saldo atual é R${this.Saldo}";
+                }
+                else
+                {
+                    throw new ArgumentException("Depósito não permitido. O valor depositado deve ser maior que ZERO.");
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Depósito não permitido. O valor Depósitado deve ser maior que ZERO.");
 
+                return $"{ex}";
             }
-
-
-
         }
 
         /// <summary>
-        /// Método para transferir um valor para outra conta.
+        /// Método responsável por realizar a transferência de um valor de uma conta (objeto atual) para outra conta (objeto `pConta`).
+        /// Tenta realizar a operação de saque e depósito. Se ocorrer qualquer erro durante o processo, uma exceção será lançada e capturada.
+        /// Em caso de falha, a exceção será reportada e o método retornará `false`.
         /// </summary>
-        /// <param name="pConta">Conta para a qual o valor será transferido.</param>
-        /// <param name="pValor">Valor a ser transferido.</param>
-        /// <returns>True se a transferência for bem-sucedida, caso contrário, false.</returns>
-        //Método Transferir
+        /// <param name="pConta">A conta para a qual o valor será transferido.</param>
+        /// <param name="pValor">O valor a ser transferido.</param>
+        /// <returns>Retorna `true` se a transferência for bem-sucedida, `false` caso contrário, indicando que houve um erro durante o processo.</returns>
         public bool Transferir(Conta pConta, double pValor)
         {
             try

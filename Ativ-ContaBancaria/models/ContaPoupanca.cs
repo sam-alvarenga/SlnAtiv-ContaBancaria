@@ -44,7 +44,7 @@ namespace SamAlvarenga.Ativ_ContaBancaria.Models
                 $" Número da Conta: {this.NumeroConta}, " +
                 $" Saldo: R$ {this.Saldo}, " +
                 $" Data da Criação da Conta: {this.DataCriacaoConta}" +
-                $" Data de Aniversário: {this.DataDeNascimento}";
+                $" Data de Nascimento: {this.DataDeNascimento}";
         }
 
     }

@@ -77,7 +77,7 @@ using System.ComponentModel;
 //        contaUp.Transferir(contaDown, 5000);
 
 
-////validação das classes com herança
+//validação das classes com herança
 //ContaEspecial especial = new ContaEspecial("Samantha", "34235", 1000.32, 10000, new DateOnly(1994, 03, 15));
 //ContaPoupanca poupanca = new ContaPoupanca("Samantha", "34235", 1000.32, new DateOnly(1994, 03, 15));
 

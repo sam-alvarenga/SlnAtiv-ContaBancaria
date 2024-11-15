@@ -26,8 +26,8 @@ public class ContaEspecial : Conta
     /// <param name="esNumeroConta">Número da conta especial.</param>
     /// <param name="esSaldo">Saldo inicial da conta especial.</param>
     /// <param name="esLimite">Limite de crédito da conta especial.</param>
-    /// <param name="esDataDeAniversário">Data de nascimento do titular.</param>
-    public ContaEspecial(string esTitular, string esNumeroConta, double esSaldo, double esLimite, DateOnly esDataDeAniversário)
+    /// <param name="esDataDeNascimento">Data de nascimento do titular.</param>
+    public ContaEspecial(string esTitular, string esNumeroConta, double esSaldo, double esLimite, DateOnly esDataDeNascimento)
     {
 
         this.Titular = esTitular;
@@ -35,37 +35,57 @@ public class ContaEspecial : Conta
         this.Saldo = esSaldo;
         this.Limite = esLimite;
         this.DataCriacaoConta = DateTime.Now;
-        this.DataDeNascimento = esDataDeAniversário;
+        this.DataDeNascimento = esDataDeNascimento;
         TipoDaConta = "Conta Especial";
 
     }
 
     /// <summary>
-    /// Método para sacar um valor da conta especial.
-    /// Permite o uso do limite de crédito se o saldo for insuficiente.
+    /// Método responsável por realizar um saque de valor da conta. O saque pode utilizar o saldo disponível e, caso necessário, o limite da conta.
+    /// Se o valor do saque for maior que o saldo e o limite combinado, uma exceção do tipo <see cref="InvalidOperationException"/> será lançada.
+    /// Caso o valor do saque seja negativo ou zero, uma exceção do tipo <see cref="ArgumentException"/> será lançada.
+    /// O método retorna uma mensagem indicando o sucesso da operação ou a descrição da exceção lançada.
     /// </summary>
-    /// <param name="valor">Valor a ser sacado.</param>
-    //Método Sacar 
-    public void Sacar(double valor)
+    /// <param name="valor">O valor a ser sacado.</param>
+    /// <returns>Retorna uma mensagem indicando o sucesso do saque ou o erro ocorrido durante o processo.</returns>
+    public string Sacar(double valor)
     {
-        if (valor <= this.Saldo + this.Limite)
+        try
         {
-            if (valor > this.Saldo)
+            if (valor > 0)
             {
-                double valorUsadoLimite = valor - this.Saldo;
-                this.Saldo = 0;
-                this.Limite -= valorUsadoLimite;
-                Console.WriteLine($"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo}, Limite restante: R${this.Limite}");
+                
+                if (valor <= this.Saldo + this.Limite)
+                {
+                    if (valor > this.Saldo)
+                    {
+                        double valorUsadoLimite = valor - this.Saldo;
+                        this.Saldo = 0;
+                        this.Limite -= valorUsadoLimite;
+                        return $"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo}, Limite restante: R${this.Limite}";
+                    }
+                    else
+                    {
+                        this.Saldo -= valor;
+                        return $"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo}, Limite Disponível: R${this.Limite}";
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Saque não permitido. O valor inserido excede o saldo e o limite.");
+                }
             }
             else
-            {
-                this.Saldo -= valor;
-                Console.WriteLine($"Saque de R${valor} realizado com sucesso. Saldo atual é: R${this.Saldo}, Limite Disponível: R${this.Limite}");
+            { 
+                throw new ArgumentException("O valor do saque deve ser maior que zero."); 
+           
             }
+         
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("Saque não permitido. O valor inserido excede o saldo e o limite.");
+
+            return $"{ex}";
         }
     }
 
@@ -84,7 +104,7 @@ public class ContaEspecial : Conta
             $" Saldo: R$ {this.Saldo}," +
             $" Limite Disponível: R$ {this.Limite}" +
             $" Data da Criação da Conta: {this.DataCriacaoConta}" +
-            $" Data de Aniversário: {this.DataDeNascimento}";
+            $" Data de Nascimento: {this.DataDeNascimento}";
 
     }
 
